@@ -15,7 +15,15 @@ data = input("what data")
 
 find = classrite.get("datastat=" + data
                      )
-print(find
-      )
+first=()
+
+last=()
+
+def askname():
+    global first
+    first = input(str("First Name of Player?"))
+    global last
+    last = input(str("Last Name of Player?"))
+    print("Confirmed, loading up " + first + " " + last)
 
 
