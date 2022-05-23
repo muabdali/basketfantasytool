@@ -16,7 +16,6 @@ def askname():
 
 askname()
 
-
 first_slice_result = (first[:2])
 last_slice_result = (last[:5])
 print(first_slice_result)
@@ -41,9 +40,9 @@ tbody = soup.find('tbody')
 pergame = tbody.find(class_="full_table")
 classrite = pergame.find(class_="right")
 tr_body = tbody.find_all('tr')
-print(pergame)
+# lprint(pergame)
 
-
+'''
 # seperates data-stat, apparently you can use .get to get obscure classes
 for trb in tr_body:
     print(trb.get('id'))
@@ -51,8 +50,24 @@ for trb in tr_body:
     th = trb.find('th')
     print(th.get_text())
     print(th.get('data-stat'))
-
-
+'''
+"""
     for td in trb.find_all('td'):
         print(td.get_text())
         print(td.get('data-stat'))
+    
+"""
+get = str(input("What stat?"))
+
+for trb in tr_body:
+    print(trb.get('id'))
+
+    th = trb.find('th')
+    print(th.get_text())
+    print(th.get('data-stat'))
+
+    row = {}
+    for td in trb.find_all('td'):
+        row[td.get('data-stat')] = td.get_text()
+
+    print(row[get])
