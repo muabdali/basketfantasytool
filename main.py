@@ -38,7 +38,7 @@ source = requests.get('https://www.basketball-reference.com/players/' + lower_le
 soup = BeautifulSoup(source, 'lxml')
 tbody = soup.find('tbody')
 pergame = tbody.find(class_="full_table")
-classrite = pergame.find(class_="right")
+classrite = tbody.find(class_="right")
 tr_body = tbody.find_all('tr')
 # lprint(pergame)
 
@@ -57,10 +57,17 @@ for trb in tr_body:
         print(td.get('data-stat'))
     
 """
+
+for td in tbody:
+    print(td.get_text)
+
+print("done")
+
 get = str(input("What stat?"))
 
 for trb in tr_body:
     print(trb.get('id'))
+    print("\n")
 
     th = trb.find('th')
     print(th.get_text())
