@@ -63,7 +63,7 @@ for td in tbody:
 
 print("done")
 
-get = str(input("What stat?"))
+get = str(input("What stat? \nCheck commands.txt for statistic names. \n"))
 
 for trb in tr_body:
     print(trb.get('id'))
