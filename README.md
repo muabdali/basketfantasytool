@@ -5,6 +5,9 @@ not for public use, really just for portfolio :D and GitHub practice
 
 data-stat cheat sheet for commands (example values are for kyle lowry)
 
+next step:
+grab main values through loop(fg_per_mp, fga_per_mp etc)
+
 data-stat="age"
 data-stat="lg_id"
 data-stat="age">
