@@ -55,3 +55,5 @@ for stat in statList:
         print(statTd['data-stat'], statTd.text)
     except:
         print(f'{stat} stat not found')
+
+# test
