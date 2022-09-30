@@ -1,0 +1,39 @@
+0.5.0
+30-09-2022
+
+MAIN CHANGES
+
+- Instead of searching up a specific URL from user input, the program now
+downloads the csv from the website and uses fuzzywuzzy to search for any
+names similar to user's input. It then returns a list of names that the
+user can choose from. This is important as it fixes any user's typos
+and makes it so any players that are related (such as the Morris
+brothers) won't completely break the program. *1
+
+-  There's now a base set of provided stats. For now it's 3pg and fg,
+but it'll be subject to change based on what formula I decide to use
+to rank players.
+
+- ALOT more user friendly. Gives error messages.
+
+*1  This issue occured before because the program had a hard-coded method
+for finding the URL. It would take the base url and then take the input from the user
+(for example: Marcus Morris ). The program would then adjust the first and last name
+to fit the nomenclature of the website (in this example it would be morrima). The program would then apply
+the number "01" to it. However, this was a problem as there were 3 (!!!) players with "morrima" as their
+url ending, therefore making the last 2 unaccessable.
+
+FUTURE UPDATES
+
+- Ask user for specific data that they would like to pull up.
+
+- Update list of base stats to give the most common ones.
+
+- Create tkinter interface.
+
+- Create formula to rank players above others.
+
+- Make the program useful for fantasy. (Allow users to input points per stat in their league and get an expected
+amount of points from player)
+
+Once all this is done, the program will be ready for full release.
