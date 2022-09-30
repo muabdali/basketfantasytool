@@ -1,80 +1,57 @@
 from bs4 import BeautifulSoup
 import requests
+import pandas as pd
 
-first = ()
-first_slice = ()
-last = ()
+#pip install fuzzywuzzy
+from fuzzywuzzy import process
+
+#pip install choice
+import choice
+
 
 
 def askname():
-    global first
-    first = input(str("First Name of Player?"))
-    global last
-    last = input(str("Last Name of Player?"))
-    print("Confirmed, loading up " + first + " " + last)
+    playerNameInput = input(str("Enter the player's name -> "))
+    return playerNameInput
+
+
+# Get all player IDs
+player_df = pd.read_csv('https://www.basketball-reference.com/short/inc/sup_players_search_list.csv', header=None)
+player_df = player_df.rename(columns={0:'id',
+                                      1:'playerName',
+                                      2:'years'})
+playersList = list(player_df['playerName'])
+
 # asks user for player name
+playerNameInput = askname()
 
-askname()
 
-first_slice_result = (first[:2])
-last_slice_result = (last[:5])
-print(first_slice_result)
-print(last_slice_result)
-# slices player's name so it can match the format bref uses
-first_slice_resultA = str(first_slice_result)
-last_slice_resultA = str(last_slice_result)
+# Find closest matches
+search_match = pd.DataFrame(process.extract(f'{playerNameInput}', playersList))
+search_match = search_match.rename(columns={0:'playerName',1:'matchScore'})
 
-first_last_slice = last_slice_resultA + first_slice_resultA
+matches = pd.merge(search_match, player_df, how='inner', on='playerName').drop_duplicates().reset_index(drop=True)
+choices = [': '.join(x) for x in list(zip(matches['playerName'], matches['years']))]
 
-lower = first_last_slice.lower() + "01"
+# Choice the match
+playerChoice = choice.Menu(choices).ask()
+playerName, years = playerChoice.split(': ')
 
-start_letter = (last[:1])
-lower_letter = (start_letter.lower())
-# grabs the letter bref uses for organization
+# Get that match players id
+match = player_df[(player_df['playerName'] == playerName) & (player_df['years'] == years)]
 
-print(lower)
-source = requests.get('https://www.basketball-reference.com/players/' + lower_letter + '/' + lower + '.html').text
+baseUrl = 'https://www.basketball-reference.com/players'
+playerId = match.iloc[0]['id']
 
-soup = BeautifulSoup(source, 'lxml')
-tbody = soup.find('tbody')
-pergame = tbody.find(class_="full_table")
-classrite = tbody.find(class_="right")
-tr_body = tbody.find_all('tr')
-# lprint(pergame)
+url = f'{baseUrl}/{playerId[0]}/{playerId}.html'
 
-'''
-# seperates data-stat, apparently you can use .get to get obscure classes
-for trb in tr_body:
-    print(trb.get('id'))
 
-    th = trb.find('th')
-    print(th.get_text())
-    print(th.get('data-stat'))
-'''
-"""
-    for td in trb.find_all('td'):
-        print(td.get_text())
-        print(td.get('data-stat'))
-    
-"""
-
-for td in tbody:
-    print(td.get_text)
-
-print("done")
-
-get = str(input("What stat? \nCheck commands.txt for statistic names. \n"))
-
-for trb in tr_body:
-    print(trb.get('id'))
-    print("\n")
-
-    th = trb.find('th')
-    print(th.get_text())
-    print(th.get('data-stat'))
-
-    row = {}
-    for td in trb.find_all('td'):
-        row[td.get('data-stat')] = td.get_text()
-
-    print(row[get])
+html = requests.get(url).text.replace('<!--', '').replace('-->', '')
+soup = BeautifulSoup(html, 'html.parser')
+statList = ['fga_per_mp', 'fg3_per_mp', 'ft_per_mp', 'random']
+for stat in statList:
+    try:
+        statTd = soup.find('td', {'data-stat':stat})
+        print(statTd['data-stat'], statTd.text)
+    except:
+        print(f'{stat} stat not found')
