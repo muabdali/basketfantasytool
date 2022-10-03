@@ -15,6 +15,9 @@ def askname():
     playerNameInput = input(str("Enter the player's name -> "))
     return playerNameInput
 
+def askStat():
+    userDataStat = input("Enter the statistic you'd like to see")
+    return userDataStat
 
 # Get all player IDs
 player_df = pd.read_csv(
@@ -26,6 +29,7 @@ playersList = list(player_df['playerName'])
 
 # asks user for player name
 playerNameInput = askname()
+userDataStat = askStat()
 
 
 # Find closest matches
@@ -57,7 +61,7 @@ url = f'{baseUrl}/{playerId[0]}/{playerId}.html'
 
 html = requests.get(url).text.replace('<!--', '').replace('-->', '')
 soup = BeautifulSoup(html, 'html.parser')
-statList = ['fga_per_mp', 'fg3_per_mp', 'ft_per_mp', 'random']
+statList = [userDataStat,'fga_per_mp', 'fg3_per_mp', 'ft_per_mp']
 for stat in statList:
     try:
         statTd = soup.find('td', {'data-stat': stat})
