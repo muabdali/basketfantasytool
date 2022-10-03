@@ -61,35 +61,10 @@ statList = ['fga_per_mp', 'fg3_per_mp', 'ft_per_mp', 'random']
 for stat in statList:
     try:
         statTd = soup.find('td', {'data-stat': stat})
-        print(statTd['data-stat'], statTd.text)
+        print("Projected",statTd['data-stat'], statTd.text)
     except:
         print(f'{stat} stat not found')
 
 # tests
 
-# NEW WORK STARTS HERE
 
-
-# new work, search for stats only in new year
-playerNameInput = askname()
-
-
-# find closest options to given name
-search_match = pd.DataFrame(process.extract(f'{playerNameInput}', playersList))
-search_match = search_match.rename(columns={0: 'playerName', 1: 'matchScore'})
-
-matches = pd.merge(search_match, player_df, how='inner',
-                   on='playerName').drop_duplicates().reset_index(drop=True)
-choices = [': '.join(x) for x in list(
-    zip(matches['playerName'], matches['years']))]
-
-playerChoice = choice.Menu(choices).ask()
-playerName, years = playerChoice.split(': ')
-
-match = player_df[(player_df['playerName'] == playerName)
-                  & (player_df['years'] == years)]
-
-baseUrl = 'https://www.basketball-reference.com/players'
-playerId = match.iloc[0]['id']
-
-url = f'{baseUrl}/{playerId[0]}/{playerId}.html'
