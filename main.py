@@ -9,6 +9,31 @@ from fuzzywuzzy import process
 # pip install choice
 import choice
 
+from nba_api import *
+
+from nba_api.stats.endpoints import commonplayerinfo
+from nba_api.stats.static import players
+
+# Basic Request
+player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544)
+
+
+custom_headers = {
+    'Host': 'stats.nba.com',
+    'Connection': 'keep-alive',
+    'Cache-Control': 'max-age=0',
+    'Upgrade-Insecure-Requests': '1',
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'en-US,en;q=0.9',
+}
+
+# Only available after v1.1.0
+# Proxy Support, Custom Headers Support, Timeout Support (in seconds)
+player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544, proxy='127.0.0.1:80', headers=custom_headers, timeout=100)
+
+
 
 # asking for player's name
 def askname():
@@ -57,6 +82,8 @@ baseUrl = 'https://www.basketball-reference.com/players'
 playerId = match.iloc[0]['id']
 
 url = f'{baseUrl}/{playerId[0]}/{playerId}.html'
+
+
 
 
 html = requests.get(url).text.replace('<!--', '').replace('-->', '')
