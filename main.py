@@ -11,8 +11,7 @@ import choice
 
 from nba_api import *
 
-from nba_api.stats.endpoints import commonplayerinfo
-from nba_api.stats.static import players
+
 
 # Basic Request
 player_info = commonplayerinfo.CommonPlayerInfo(player_id=2544)
@@ -95,6 +94,9 @@ for stat in statList:
         print("Projected",statTd['data-stat'], statTd.text)
     except:
         print(f'{stat} stat not found')
+
+
+
 
 # tests
 

@@ -43,21 +43,51 @@ nextgame_bron = PlayerNextNGames(number_of_games=5, player_id=2544)
 df = nextgame_bron.get_data_frames()[0]
 print(df)
 
+# list of next 5 games
+game_List = []
 
-def fixtureFind():
+hard_List = ['GSW', 'BOS', 'PHX', 'LAC', 'PHI']
+med_List = ['DEN','BKN','MEM', 'DAL', 'CLE', 'MIA', 'MIN', 'TOR']
+
+
+
+# function that repeats 5 times, finds the opposing team's abbriviation on the 7th coloumn. 
+# if the player's team is on the 7th coloum, it switches to the 6th and takes that instead.
+# it then appends the diffculty_List list to include all 5 fixtures.
+def fixtureFind_abbv():
     i = 0
     while i < 5:
         nextFixture = df.iat[i,7]
         if nextFixture == "LAL":
             nextFixture = df.iat[i,6]
             print(nextFixture)
+            game_List.append(nextFixture)
             i = i + 1
         else:
             print(nextFixture)
+            game_List.append(nextFixture)
             i = i + 1
 
-fixtureFind()
 
-#a = df.iat[0,7]
+"""
+def fixtureFind_visID():
+    b = 0
+    while b < 5:
+        nextFixture = df.iat[b, 3]
+        if nextFixture == playerTeamID:
+            nextFixture = df.iat[b, 2]
+            print(nextFixture)
+"""
 
-#print(a)
+
+fixtureFind_abbv()
+
+print(game_List)
+
+
+for team in game_List:
+    print(team)
+    if team == 'GSW''LAC':
+        print("hard")
+    else:
+        print("easy")
