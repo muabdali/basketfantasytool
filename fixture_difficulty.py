@@ -96,7 +96,7 @@ def matchupDecide():
                 print(team + " - Medium Matchup")
                 c = c + 1
             elif team == easy_List[c]:
-                print(team + " -Easy Matchup")
+                print(team + " - Easy Matchup")
                 c = c + 1
             else:
                 c = c + 1
