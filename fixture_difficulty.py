@@ -46,8 +46,9 @@ print(df)
 # list of next 5 games
 game_List = []
 
-hard_List = ['GSW', 'BOS', 'PHX', 'LAC', 'PHI']
-med_List = ['DEN','BKN','MEM', 'DAL', 'CLE', 'MIA', 'MIN', 'TOR']
+hard_List = [ 'BOS', 'PHX', 'LAC', 'PHI', 'MKW', 'GSW']
+med_List = ['DEN','BKN','MEM', 'DAL', 'CLE', 'MIA', 'TOR', 'ATL', 'MIN']
+easy_List = ['NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'SAC', 'WAS', 'DET', 'IND', 'HOU', 'ORL', 'UTA', 'OKC', 'SAS']
 
 
 
@@ -84,10 +85,18 @@ fixtureFind_abbv()
 
 print(game_List)
 
-
-for team in game_List:
-    print(team)
-    if team == 'GSW''LAC':
-        print("hard")
-    else:
-        print("easy")
+def matchupDecide():
+    for team in game_List:
+        c = 0
+        while c < 6:
+            if team == hard_List[c]:
+                print(team + " - Hard Matchup")
+                c = c + 1
+            elif team == med_List[c]:
+                print(team + " - Medium Matchup")
+                c = c + 1
+            elif team == easy_List[c]:
+                print(team + " -Easy Matchup")
+                c = c + 1
+            else:
+                c = c + 1
