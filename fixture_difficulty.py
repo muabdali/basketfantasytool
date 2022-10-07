@@ -36,9 +36,23 @@ from nba_api.stats.endpoints import MatchupsRollup
 player_dict = players.get_active_players()
 
 
+find = input("Player Name")
+findPlayer = players.find_players_by_full_name(find)
+
+pf = pd.DataFrame({'col':findPlayer})
+
+pf.to_csv('file_name.csv')
+
+
 #gamelog_bron = playergamelog.PlayerGameLog(player_id='2544', season = '2022')
 
-nextgame_bron = PlayerNextNGames(number_of_games=5, player_id=2544)
+players_ID = 2544 
+
+def findPlayerID():
+    return
+
+
+nextgame_bron = PlayerNextNGames(number_of_games=5, player_id=players_ID)
 
 df = nextgame_bron.get_data_frames()[0]
 print(df)
@@ -52,14 +66,15 @@ easy_List = ['NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'SAC', 'WAS', 'DET', 'IND
 
 
 
+
 # function that repeats 5 times, finds the opposing team's abbriviation on the 7th coloumn. 
 # if the player's team is on the 7th coloum, it switches to the 6th and takes that instead.
 # it then appends the diffculty_List list to include all 5 fixtures.
-def fixtureFind_abbv():
+def fixtureFind_abbv(playersTeam_Abbv):
     i = 0
     while i < 5:
         nextFixture = df.iat[i,7]
-        if nextFixture == "LAL":
+        if nextFixture == playersTeam_Abbv:
             nextFixture = df.iat[i,6]
             print(nextFixture)
             game_List.append(nextFixture)
@@ -70,7 +85,7 @@ def fixtureFind_abbv():
             i = i + 1
 
 
-"""
+
 def fixtureFind_visID():
     b = 0
     while b < 5:
@@ -78,10 +93,11 @@ def fixtureFind_visID():
         if nextFixture == playerTeamID:
             nextFixture = df.iat[b, 2]
             print(nextFixture)
-"""
 
 
-fixtureFind_abbv()
+playerAbbv = str("LAL")
+fixtureFind_abbv(playerAbbv)
+
 
 print(game_List)
 
