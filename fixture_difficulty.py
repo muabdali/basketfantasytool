@@ -100,3 +100,5 @@ def matchupDecide():
                 c = c + 1
             else:
                 c = c + 1
+
+matchupDecide()
