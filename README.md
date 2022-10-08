@@ -1,7 +1,4 @@
-# fantasytest
+wip
 
-
-not for public use, really just for portfolio :D and GitHub practice
-
-
+track progress at https://trello.com/b/nAJkIRRv/main-board
 
