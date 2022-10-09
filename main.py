@@ -53,6 +53,8 @@ choices = [': '.join(x) for x in list(
 # Choice the match
 playerChoice = choice.Menu(choices).ask()
 playerName, years = playerChoice.split(': ')
+# for fixture_difficulty
+find = playerChoice
 
 # Get that match players id
 match = player_df[(player_df['playerName'] == playerName)

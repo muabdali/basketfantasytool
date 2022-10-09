@@ -1,6 +1,7 @@
 
 # pip install bs4
 from email.policy import default
+from logging import PlaceHolder
 from bs4 import BeautifulSoup
 import requests
 import pandas as pd
@@ -35,19 +36,28 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import MatchupsRollup
 player_dict = players.get_active_players()
 
+name = "Lebron James"
 
-find = input("Player Name")
-findPlayer = players.find_players_by_full_name(find)
+def findPlayerFunc(find):
+    global findPlayer
+    findPlayer = players.find_players_by_full_name(find)
+    return findPlayer
 
-print(findPlayer)
+
+
+findPlayerFunc(name)
 
 pf = pd.DataFrame(findPlayer)
+playerTeamID = "PlaceHolder"
+
 
 pf.to_csv('file_name.csv')
 
 
+
 #gamelog_bron = playergamelog.PlayerGameLog(player_id='2544', season = '2022')
 
+#NEXT
 players_ID = 2544 
 
 def findPlayerID():
