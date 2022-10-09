@@ -36,7 +36,7 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import MatchupsRollup
 player_dict = players.get_active_players()
 
-name = "Lebron James"
+name = "Kyle Lowry"
 
 def findPlayerFunc(find):
     global findPlayer
@@ -58,13 +58,14 @@ playerCSVDataFrame = pf.to_csv('file_name.csv')
 #gamelog_bron = playergamelog.PlayerGameLog(player_id='2544', season = '2022')
 
 #NEXT
-players_ID = 2544 
 
 
 # extracts playerID from df (pf)
 #def findPlayerID():
 
 # reads playerinfo dataframe and extracts id as playerID_Spec and full name and player id as pfRead
+
+
 def playerID_Pull():
     global playerID_Spec, pfName_playerID
     dataset = pd.read_csv('file_name.csv')
@@ -76,7 +77,14 @@ def playerID_Pull():
 
 
 
+
 playerID_Pull()
+
+# VARIABLE SWAP VERY IMPORTANT
+players_ID = playerID_Spec 
+print(players_ID)
+
+
 
 nextgame_bron = PlayerNextNGames(number_of_games=5, player_id=players_ID)
 
