@@ -50,8 +50,8 @@ findPlayerFunc(name)
 pf = pd.DataFrame(findPlayer)
 playerTeamID = "PlaceHolder"
 
-
-pf.to_csv('file_name.csv')
+#saves playerinfo df as csv
+playerCSVDataFrame = pf.to_csv('file_name.csv')
 
 
 
@@ -60,9 +60,23 @@ pf.to_csv('file_name.csv')
 #NEXT
 players_ID = 2544 
 
-def findPlayerID():
+
+# extracts playerID from df (pf)
+#def findPlayerID():
+
+# reads playerinfo dataframe and extracts id as playerID_Spec and full name and player id as pfRead
+def playerID_Pull():
+    global playerID_Spec, pfName_playerID
+    dataset = pd.read_csv('file_name.csv')
+    cols = [1,2]
+    pfName_playerID = dataset[dataset.columns[cols]]
+    playerID_Spec = pf.iat[0,0]
+    print(playerID_Spec)
     return
 
+
+
+playerID_Pull()
 
 nextgame_bron = PlayerNextNGames(number_of_games=5, player_id=players_ID)
 
