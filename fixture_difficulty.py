@@ -39,7 +39,9 @@ player_dict = players.get_active_players()
 find = input("Player Name")
 findPlayer = players.find_players_by_full_name(find)
 
-pf = pd.DataFrame({'col':findPlayer})
+print(findPlayer)
+
+pf = pd.DataFrame(findPlayer)
 
 pf.to_csv('file_name.csv')
 
