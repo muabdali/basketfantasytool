@@ -36,7 +36,7 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import MatchupsRollup
 player_dict = players.get_active_players()
 
-name = "Kyle Lowry"
+name = "Kawhi Leonard"
 
 def findPlayerFunc(find):
     global findPlayer
@@ -52,12 +52,11 @@ playerTeamID = "PlaceHolder"
 
 #saves playerinfo df as csv
 playerCSVDataFrame = pf.to_csv('file_name.csv')
+print(pf)
 
 
 
 #gamelog_bron = playergamelog.PlayerGameLog(player_id='2544', season = '2022')
-
-#NEXT
 
 
 # extracts playerID from df (pf)
@@ -77,14 +76,16 @@ def playerID_Pull():
 
 
 
-
 playerID_Pull()
 
 # VARIABLE SWAP VERY IMPORTANT
 players_ID = playerID_Spec 
 print(players_ID)
 
-
+teamABBV = commonplayerinfo.CommonPlayerInfo(player_id=players_ID)
+abbvDF = teamABBV.get_data_frames()[0]
+getAbbv = abbvDF.iat[0, 20]
+print(getAbbv)
 
 nextgame_bron = PlayerNextNGames(number_of_games=5, player_id=players_ID)
 
@@ -95,8 +96,8 @@ print(df)
 game_List = []
 
 hard_List = [ 'BOS', 'PHX', 'LAC', 'PHI', 'MKW', 'GSW']
-med_List = ['DEN','BKN','MEM', 'DAL', 'CLE', 'MIA', 'TOR', 'ATL', 'MIN']
-easy_List = ['NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'SAC', 'WAS', 'DET', 'IND', 'HOU', 'ORL', 'UTA', 'OKC', 'SAS']
+med_List = ['MIA','TOR','DEN','BKN','MEM', 'DAL','CLE','MIA','ATL', 'MIN']
+easy_List = ['OKC','SAC','NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'WAS', 'DET', 'IND', 'HOU', 'ORL', 'UTA', 'SAS']
 
 
 
@@ -129,7 +130,7 @@ def fixtureFind_visID():
             print(nextFixture)
 
 
-playerAbbv = str("LAL")
+playerAbbv = str(getAbbv)
 fixtureFind_abbv(playerAbbv)
 
 
