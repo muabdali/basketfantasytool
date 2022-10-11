@@ -1,7 +1,5 @@
 # fantasytest
 
-
-not for public use, really just for portfolio :D and GitHub practice
-
+A tool to compare NBA players and to view any fantasy-related information about them.
 
 
