@@ -1,6 +1,5 @@
 
 # pip install bs4
-from email.policy import default
 from logging import PlaceHolder
 from bs4 import BeautifulSoup
 import requests

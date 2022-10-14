@@ -1,22 +1,20 @@
 # pull player from espn team
 
-from bs4 import BeautifulSoup
+
 import requests
-import pandas as pd
-import urllib.request, json 
 
-# default url https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/***LEAGUEID***
-
+url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/454981630?forTeamId=10&scoringPeriodId=1&view=mRoster'
+r = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
 
 
-leagueID = '454981630'
-league_URL = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{leagueID}'
+# gets players from json and puts them in a dictionary
+def rosterGet():
+    for e in r.json()['teams'][0]['roster']['entries']:
+        #print(e['playerPoolEntry']['player']['fullName'])
+        rosterPlayer_dict.append(e['playerPoolEntry']['player']['fullName'])
 
-# gets json from webpage also 
-with urllib.request.urlopen(league_URL) as url:
-    data = json.load(url)
-    dataJSON = json.loads(data)
+# dictionary with all the players from linked team
+rosterPlayer_dict=[]
 
-
-print(dataJSON)
-
+rosterGet()
+print(rosterPlayer_dict)

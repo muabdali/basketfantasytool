@@ -21,7 +21,7 @@ def askname():
     return playerNameInput
 
 def askStat():
-    userDataStat = input("Enter the statistic you'd like to see")
+    userDataStat = input("Enter the statistic you'd like to see ->")
     return userDataStat
 
 # Get all player IDs
