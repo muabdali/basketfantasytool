@@ -2,8 +2,8 @@
 
 
 import requests
-
-url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/454981630?forTeamId=10&scoringPeriodId=1&view=mRoster'
+leagueID = 454981630
+url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{leagueID}?forTeamId=10&scoringPeriodId=1&view=mRoster'
 r = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
 
 
