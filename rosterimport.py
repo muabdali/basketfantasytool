@@ -12,9 +12,11 @@ def rosterGet(givenLeagueID, givenTeamID):
     url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?forTeamId={givenTeamID}&scoringPeriodId=1&view=mRoster'
     r = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
     for e in r.json()['teams'][0]['roster']['entries']:
+        print(type(url))
         #print(e['playerPoolEntry']['player']['fullName'])
         rosterPlayer_dict.append(e['playerPoolEntry']['player']['fullName'])
-        print(e['playerId'])
+        # prints player id (might be useful later) print(e['playerId'])
+
 # dictionary with all the players from linked team
 rosterPlayer_dict=[]
 
