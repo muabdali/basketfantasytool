@@ -41,7 +41,7 @@ def TeamRoster(givenLeagueID):
             teamID = teamID + 1
 
         
-
+#test
             
                     
 
@@ -55,9 +55,5 @@ TEAM ID CORRESPONDS WITH ORDER ON https://fantasy.espn.com/apis/v3/games/fba/sea
 ROSTER INFORMATION ON EACH INDIVIDUAL TEAM ID IS AT https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/454981630?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav
 
 e.g 4th team under members[] has TeamId = 4.
-
-
-
-
 
 """
