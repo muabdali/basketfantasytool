@@ -14,9 +14,12 @@ leagueID = 454981630
 #teamID = 1
 
 
+# dictionary that only holds player names
 rosterPlayer_dict=[]
 
 
+
+# function that grabs players from each team, updating the URL and is called by TeamRoster() for each team in the league
 def PlayerGrab(givenLeagueID, teamID):
     teamID = teamID
     mrl = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?forTeamId={teamID}&scoringPeriodId=1&view=mRoster'
@@ -28,6 +31,7 @@ def PlayerGrab(givenLeagueID, teamID):
             print(playerNameinLoop)
 
 
+# gets each team name then calles playerGrab to get the players to that team name.
 def TeamRoster(givenLeagueID):
     teamID = 1
     while teamID < 10:
