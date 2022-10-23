@@ -17,7 +17,7 @@ leagueID = 454981630
 # dictionary that only holds player names
 rosterPlayer_dict=[]
 
-
+# function to count teams
 
 # function that grabs players from each team, updating the URL and is called by TeamRoster() for each team in the league
 def PlayerGrab(givenLeagueID, teamID):
