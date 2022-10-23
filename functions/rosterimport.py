@@ -16,8 +16,19 @@ leagueID = 454981630
 
 # dictionary that only holds player names
 rosterPlayer_dict=[]
-
 # function to count teams
+# teamNumber is amount of teams
+def TeamCount(givenLeagueID):
+    global teamNumber
+    teamNumber = 0
+    curl = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
+    p = requests.get(curl, headers = {"User-Agent": "Mozilla/5.0"})
+    for e in p.json()['members']:
+        teamNumber = teamNumber + 1
+
+
+TeamCount(leagueID)
+
 
 # function that grabs players from each team, updating the URL and is called by TeamRoster() for each team in the league
 def PlayerGrab(givenLeagueID, teamID):
@@ -34,7 +45,7 @@ def PlayerGrab(givenLeagueID, teamID):
 # gets each team name then calles playerGrab to get the players to that team name.
 def TeamRoster(givenLeagueID):
     teamID = 1
-    while teamID < 10:
+    while teamID < teamNumber:
         url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
         r = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
         for e in r.json()['members']:
