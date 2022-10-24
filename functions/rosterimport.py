@@ -29,6 +29,47 @@ def TeamCount(givenLeagueID):
 
 TeamCount(leagueID)
 
+'''
+STAT ID LEGEND
+
+Rebound = statID : 6
+Turnover = statID : 11
+Field Goal Made = statID : 13
+Field Goal Attempted = statID : 14
+3 Point Made = statID : 15
+Free Throw Missed = statID : 16
+Point = statID : 0
+Free Throw made = statID : 17
+Steal = statID : 1
+Block = statID : 2
+Assist = statID : 3
+
+'''
+
+
+def importSettings(givenLeagueID):
+    global statsDict
+    url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
+    p = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
+    statsDict = {
+        'Point' :0,
+        'Steal' :0,
+        'Rebound' :0,
+        'Turnover' :0,
+        'Field Goal Made' :0,
+        'Field Goal Attempted' :0,
+        '3 Point Made' :0,
+        'Free Throw Missed' :0,
+        'Free Throw Made' :0,
+        'Block' :0,
+        'Assist' :0
+            }
+    for t in p.json()['settings']['scoringSettings']['scoringItems']:
+        statID = (t['statId'])
+        print(statID)
+
+importSettings(leagueID)
+
 
 # function that grabs players from each team, updating the URL and is called by TeamRoster() for each team in the league
 def PlayerGrab(givenLeagueID, teamID):
