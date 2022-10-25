@@ -3,6 +3,7 @@
 from fileinput import filename
 import json
 from discord import Team
+import pandas as pd
 
 
 
@@ -25,9 +26,6 @@ def TeamCount(givenLeagueID):
     p = requests.get(curl, headers = {"User-Agent": "Mozilla/5.0"})
     for e in p.json()['members']:
         teamNumber = teamNumber + 1
-
-
-TeamCount(leagueID)
 
 '''
 STAT ID LEGEND
@@ -68,9 +66,6 @@ def importSettings(givenLeagueID):
         statID = (t['statId'])
         print(statID)
 
-importSettings(leagueID)
-
-
 # function that grabs players from each team, updating the URL and is called by TeamRoster() for each team in the league
 def PlayerGrab(givenLeagueID, teamID):
     teamID = teamID
@@ -80,7 +75,7 @@ def PlayerGrab(givenLeagueID, teamID):
             #print(e['playerPoolEntry']['player']['fullName'])
             rosterPlayer_dict.append(t['playerPoolEntry']['player']['fullName'])
             playerNameinLoop = (t['playerPoolEntry']['player']['fullName'])
-            print(playerNameinLoop)
+            print(rosterPlayer_dict)
 
 
 # gets each team name then calles playerGrab to get the players to that team name.
@@ -97,14 +92,18 @@ def TeamRoster(givenLeagueID):
             teamID = teamID + 1
 
         
-#test
-            
-                    
+
+# NEW WORK STARTS HERE OCT 25th
+
+def mainFunction(givenLeagueID):
+    importSettings(givenLeagueID)
+    TeamCount(givenLeagueID)
+    TeamRoster(givenLeagueID)
+    print("All Done")
+    return
 
 
-TeamRoster(leagueID)
-#print(rosterPlayer_dict)
-
+mainFunction(leagueID)
 """
 TEAM ID CORRESPONDS WITH ORDER ON https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/454981630?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav
 
