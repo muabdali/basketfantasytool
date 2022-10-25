@@ -3,7 +3,7 @@
 from fileinput import filename
 import json
 from discord import Team
-import pandas as pd
+import numpy as np
 
 
 
@@ -16,7 +16,7 @@ leagueID = 454981630
 
 
 # dictionary that only holds player names
-rosterPlayer_dict=[]
+rosterPlayer_list=[]
 # function to count teams
 # teamNumber is amount of teams
 def TeamCount(givenLeagueID):
@@ -45,6 +45,16 @@ Assist = statID : 3
 '''
 
 
+def playerCount(givenLeagueID, teamID):
+    global numOfPlayers
+    numOfPlayers = 0
+    teamID = teamID
+    mrl = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?forTeamId={teamID}&scoringPeriodId=1&view=mRoster'
+    p = requests.get(mrl, headers = {"User-Agent": "Mozilla/5.0"})
+    for t in p.json()['teams'][0]['roster']['entries']:
+        numOfPlayers = numOfPlayers + 1
+    return(numOfPlayers)
+
 def importSettings(givenLeagueID):
     global statsDict
     url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
@@ -68,14 +78,18 @@ def importSettings(givenLeagueID):
 
 # function that grabs players from each team, updating the URL and is called by TeamRoster() for each team in the league
 def PlayerGrab(givenLeagueID, teamID):
+    numOfPlayer_Count = 0
     teamID = teamID
     mrl = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?forTeamId={teamID}&scoringPeriodId=1&view=mRoster'
     p = requests.get(mrl, headers = {"User-Agent": "Mozilla/5.0"})
+    playerCount(givenLeagueID, teamID)
     for t in p.json()['teams'][0]['roster']['entries']:
-            #print(e['playerPoolEntry']['player']['fullName'])
-            rosterPlayer_dict.append(t['playerPoolEntry']['player']['fullName'])
+            rosterPlayer_list.append(t['playerPoolEntry']['player']['fullName'])
             playerNameinLoop = (t['playerPoolEntry']['player']['fullName'])
-            print(rosterPlayer_dict)
+            numOfPlayer_Count = numOfPlayer_Count + 1
+            if numOfPlayer_Count == numOfPlayers:
+                print(rosterPlayer_list)
+                rosterPlayer_list.clear()
 
 
 # gets each team name then calles playerGrab to get the players to that team name.
