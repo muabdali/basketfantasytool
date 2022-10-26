@@ -55,6 +55,7 @@ def playerCount(givenLeagueID, teamID):
         numOfPlayers = numOfPlayers + 1
     return(numOfPlayers)
 
+# accesses scoringItems and returns values. All the point values are hidden under a dataID system. See line 30 or statID.md for more info.
 def importSettings(givenLeagueID):
     global statsDict
     url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
@@ -106,8 +107,6 @@ def TeamRoster(givenLeagueID):
             teamID = teamID + 1
 
         
-
-# NEW WORK STARTS HERE OCT 25th
 
 def mainFunction(givenLeagueID):
     importSettings(givenLeagueID)
