@@ -40,4 +40,3 @@ def importSettings(givenLeagueID):
 
 
 importSettings(leagueID)
-print(statsDict)

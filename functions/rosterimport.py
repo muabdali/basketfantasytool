@@ -5,6 +5,7 @@ import json
 from discord import Team
 import numpy as np
 import requests
+from settingsImport import importSettings
 
 
 path = './'
