@@ -35,7 +35,7 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import MatchupsRollup
 player_dict = players.get_active_players()
 
-name = "Kawhi Leonard"
+name = "Kyle Lowry"
 
 def findPlayerFunc(find):
     global findPlayer
@@ -96,7 +96,7 @@ game_List = []
 
 hard_List = [ 'BOS', 'PHX', 'LAC', 'PHI', 'MKW', 'GSW']
 med_List = ['MIA','TOR','DEN','BKN','MEM', 'DAL','CLE','MIA','ATL', 'MIN']
-easy_List = ['OKC','SAC','NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'WAS', 'DET', 'IND', 'HOU', 'ORL', 'UTA', 'SAS']
+easy_List = ['HOU', 'OKC','SAC','NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'WAS', 'DET', 'IND', 'ORL', 'UTA', 'SAS']
 
 
 
@@ -136,19 +136,17 @@ fixtureFind_abbv(playerAbbv)
 print(game_List)
 
 def matchupDecide():
-    for team in game_List:
-        c = 0
-        while c < 6:
-            if team == hard_List[c]:
+    c = 0
+    while c < 5:
+        for team in game_List:
+            if team in hard_List:
                 print(team + " - Hard Matchup")
                 c = c + 1
-            elif team == med_List[c]:
+            elif team in med_List:
                 print(team + " - Medium Matchup")
                 c = c + 1
-            elif team == easy_List[c]:
+            elif team in easy_List:
                 print(team + " - Easy Matchup")
-                c = c + 1
-            else:
                 c = c + 1
 
 matchupDecide()
