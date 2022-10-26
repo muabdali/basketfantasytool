@@ -4,15 +4,13 @@ from fileinput import filename
 import json
 from discord import Team
 import numpy as np
-
+import requests
 
 
 path = './'
 fileName = 'members'
-
-import requests
 leagueID = 454981630
-#teamID = 1
+
 
 
 # dictionary that only holds player names
@@ -56,26 +54,6 @@ def playerCount(givenLeagueID, teamID):
     return(numOfPlayers)
 
 # accesses scoringItems and returns values. All the point values are hidden under a dataID system. See line 30 or statID.md for more info.
-def importSettings(givenLeagueID):
-    global statsDict
-    url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
-    p = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
-    statsDict = {
-        'Point' :0,
-        'Steal' :0,
-        'Rebound' :0,
-        'Turnover' :0,
-        'Field Goal Made' :0,
-        'Field Goal Attempted' :0,
-        '3 Point Made' :0,
-        'Free Throw Missed' :0,
-        'Free Throw Made' :0,
-        'Block' :0,
-        'Assist' :0
-            }
-    for t in p.json()['settings']['scoringSettings']['scoringItems']:
-        statID = (t['statId'])
-        print(statID)
 
 # function that grabs players from each team, updating the URL and is called by TeamRoster() for each team in the league
 def PlayerGrab(givenLeagueID, teamID):
