@@ -44,6 +44,30 @@ Assist = statID : 3
 '''
 
 
+# assigns corresponding order on json as a value to the firstName + lastName as the key and stores it in a dictionary
+def teamNamed(givenLeagueID):
+    global teamNamedict
+    url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
+    r = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
+    teamAssignCount = 0
+    # leave empty to start
+    teamNamedict = {
+     
+    }    
+    for t in r.json()['members']:
+        firstName = t['firstName']
+        lastName = t['lastName']
+        playerName = f'{firstName} {lastName}'
+        teamNamedict[playerName] = teamAssignCount
+        teamAssignCount = teamAssignCount + 1
+    
+    
+    return
+
+
+teamNamed(leagueID)
+
+#counts amount of players so that PlayerGrab() has the right amount of loops to do
 def playerCount(givenLeagueID, teamID):
     global numOfPlayers
     numOfPlayers = 0
