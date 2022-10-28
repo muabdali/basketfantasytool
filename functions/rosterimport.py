@@ -3,17 +3,29 @@
 from fileinput import filename
 import json
 from discord import Team
-import numpy as np
 import requests
 from settingsImport import importSettings
-
+from playerTeamlists import teamListReset 
 
 path = './'
 fileName = 'members'
 leagueID = 454981630
 
 
+teamListDict = {
+    'Team1': 0,
+    'Team2':0,
+    'Team3':0,
+    'Team4':0,
+    'Team5':0,
+    'Team6':0,
+    'Team7':0,
+    'Team8':0,
+    'Team9':0,
+    'Team10': 0
+}   
 
+#teamListReset()
 # dictionary that only holds player names
 rosterPlayer_list=[]
 # function to count teams
@@ -92,12 +104,16 @@ def PlayerGrab(givenLeagueID, teamID):
             playerNameinLoop = (t['playerPoolEntry']['player']['fullName'])
             numOfPlayer_Count = numOfPlayer_Count + 1
             if numOfPlayer_Count == numOfPlayers:
-                print(rosterPlayer_list)
+                currentPlayerlist = rosterPlayer_list
+                finallistNumber = (f'Team{teamID}')
+                teamListDict[finallistNumber] = currentPlayerlist
+                print(teamListDict[finallistNumber])
                 rosterPlayer_list.clear()
 
 
 # gets each team name then calles playerGrab to get the players to that team name.
 def TeamRoster(givenLeagueID):
+    global lastName_Print
     teamID = 1
     while teamID < teamNumber:
         url = f'https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/{givenLeagueID}?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav'
@@ -118,8 +134,11 @@ def mainFunction(givenLeagueID):
     print("All Done")
     return
 
-
 mainFunction(leagueID)
+
+
+
+
 """
 TEAM ID CORRESPONDS WITH ORDER ON https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/454981630?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav
 
