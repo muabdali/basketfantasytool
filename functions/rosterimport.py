@@ -43,24 +43,6 @@ def TeamCount(givenLeagueID):
     for e in p.json()['members']:
         teamNumber = teamNumber + 1
 
-'''
-STAT ID LEGEND
-
-Rebound = statID : 6
-Turnover = statID : 11
-Field Goal Made = statID : 13
-Field Goal Attempted = statID : 14
-3 Point Made = statID : 15
-Free Throw Missed = statID : 16
-Point = statID : 0
-Free Throw made = statID : 17
-Steal = statID : 1
-Block = statID : 2
-Assist = statID : 3
-
-'''
-
-
 # assigns corresponding order on json as a value to the firstName + lastName as the key and stores it in a dictionary
 def teamNamed(givenLeagueID):
     global teamNamedict
@@ -142,9 +124,6 @@ def mainFunction(givenLeagueID):
 
 mainFunction(leagueID)
 
-
-
-print("hold")
 """
 TEAM ID CORRESPONDS WITH ORDER ON https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/454981630?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav
 
