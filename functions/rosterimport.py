@@ -22,7 +22,12 @@ teamListDict = {
     'Team7':0,
     'Team8':0,
     'Team9':0,
-    'Team10': 0
+    'Team10': 0,
+    'Team11': 0,
+    'Team12': 0 ,
+    'Team13': 0,
+    'Team14': 0,
+    'Team15':0,
 }   
 
 #teamListReset()
@@ -106,7 +111,8 @@ def PlayerGrab(givenLeagueID, teamID):
             if numOfPlayer_Count == numOfPlayers:
                 currentPlayerlist = rosterPlayer_list
                 finallistNumber = (f'Team{teamID}')
-                teamListDict[finallistNumber] = currentPlayerlist
+                # updates teamListDict with a copy of the playerlist so that when the variable is cleared, it also doesn't clear the dictionary value
+                teamListDict.update({finallistNumber : currentPlayerlist.copy()})
                 print(teamListDict[finallistNumber])
                 rosterPlayer_list.clear()
 
@@ -138,7 +144,7 @@ mainFunction(leagueID)
 
 
 
-
+print("hold")
 """
 TEAM ID CORRESPONDS WITH ORDER ON https://fantasy.espn.com/apis/v3/games/fba/seasons/2023/segments/0/leagues/454981630?view=mSettings&view=mRoster&view=mTeam&view=modular&view=mNav
 
