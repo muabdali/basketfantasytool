@@ -11,7 +11,7 @@ path = './'
 fileName = 'members'
 leagueID = 454981630
 
-
+# dictionary holding all players
 teamListDict = {
     'Team1': 0,
     'Team2':0,
