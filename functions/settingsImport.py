@@ -11,7 +11,7 @@ import requests
 path = './'
 fileName = 'members'
 leagueID = 454981630
-
+#test local 
 # includes dictionary for all key value pairs (points, steals etc)
 # for legend on keys (0 = points, 6 = rounds etc) check statID.md
 def importSettings(givenLeagueID):
