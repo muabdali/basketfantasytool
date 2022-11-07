@@ -67,6 +67,8 @@ def teamNamed(givenLeagueID):
 teamNamed(leagueID)
 
 #counts amount of players so that PlayerGrab() has the right amount of loops to do
+
+## COULD BE REWRITTEN SO IT USES len() INSTEAD
 def playerCount(givenLeagueID, teamID):
     global numOfPlayers
     numOfPlayers = 0

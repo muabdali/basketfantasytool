@@ -83,4 +83,4 @@ for stat in statList:
 
 # tests
 
-
+# value dict reset/initialize
