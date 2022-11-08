@@ -24,6 +24,6 @@ def valueDictUpdate():
     values.update({'REB':givenNumber2})
     values.update({'AST':givenNumber3})
     values.update({'STL':givenNumber4})
-             
+
 
 
