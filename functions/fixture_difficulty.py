@@ -18,6 +18,9 @@ from nba_api.stats.static import players
 from nba_api.stats.static import teams
 from nba_api.stats.endpoints import PlayerNextNGames
 
+#import team difficulty
+from teamDiff import *
+
 
 import pandas as pd
 custom_headers = {
@@ -86,20 +89,10 @@ abbvDF = teamABBV.get_data_frames()[0]
 getAbbv = abbvDF.iat[0, 20]
 print(getAbbv)
 
-nextgame_bron = PlayerNextNGames(number_of_games=5, player_id=players_ID)
+nextgame = PlayerNextNGames(number_of_games=5, player_id=players_ID)
 
-df = nextgame_bron.get_data_frames()[0]
+df = nextgame.get_data_frames()[0]
 print(df)
-
-# list of next 5 games
-game_List = []
-
-hard_List = [ 'BOS', 'PHX', 'LAC', 'PHI', 'MKW', 'GSW']
-med_List = ['MIA','TOR','DEN','BKN','MEM', 'DAL','CLE','MIA','ATL', 'MIN']
-easy_List = ['HOU', 'OKC','SAC','NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'WAS', 'DET', 'IND', 'ORL', 'UTA', 'SAS']
-
-
-
 
 # function that repeats 5 times, finds the opposing team's abbriviation on the 7th coloumn. 
 # if the player's team is on the 7th coloum, it switches to the 6th and takes that instead.
