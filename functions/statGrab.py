@@ -65,8 +65,8 @@ playerId = match.iloc[0]['id']
 
 url = f'{baseUrl}/{playerId[0]}/{playerId}.html'
 
-
-
+# MAKE DATAFRAME OF ALL STATS
+valuesDF = pd.DataFrame
 
 html = requests.get(url).text.replace('<!--', '').replace('-->', '')
 soup = BeautifulSoup(html, 'html.parser')

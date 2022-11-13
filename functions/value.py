@@ -9,8 +9,6 @@ def valueDictFunc():
         }
     numOfValues = len(values)
 
-
-
 valueDictFunc()
 
 # REMOVE AFTER RELEASE TEST ONLY
