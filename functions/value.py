@@ -12,12 +12,8 @@ def valueDictFunc():
 valueDictFunc()
 
 # REMOVE AFTER RELEASE TEST ONLY
-givenNumber = 22.3
-givenNumber2 = 5.2
-givenNumber3 = 1.4
-givenNumber4 = 0.4
 
-def valueDictUpdate():
+def valueDictUpdate(givenNumber,givenNumber2,givenNumber3,givenNumber4):
     values.update({'PPG':givenNumber})
     values.update({'REB':givenNumber2})
     values.update({'AST':givenNumber3})

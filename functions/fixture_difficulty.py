@@ -21,6 +21,14 @@ from nba_api.stats.endpoints import PlayerNextNGames
 #import team difficulty
 from teamDiff import *
 
+# list of next 5 games
+game_List = []
+
+hard_List = [ 'BOS', 'PHX', 'LAC', 'PHI', 'MKW', 'GSW']
+med_List = ['MIA','TOR','DEN','BKN','MEM', 'DAL','CLE','MIA','ATL', 'MIN']
+easy_List = ['HOU', 'OKC','SAC','NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'WAS', 'DET', 'IND', 'ORL', 'UTA', 'SAS']
+
+
 
 import pandas as pd
 custom_headers = {
@@ -38,7 +46,7 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import MatchupsRollup
 player_dict = players.get_active_players()
 
-name = "Kyle Lowry"
+name = "Kawhi Leonard"
 
 def findPlayerFunc(find):
     global findPlayer
@@ -55,16 +63,6 @@ playerTeamID = "PlaceHolder"
 #saves playerinfo df as csv
 playerCSVDataFrame = pf.to_csv('file_name.csv')
 print(pf)
-
-
-
-#gamelog_bron = playergamelog.PlayerGameLog(player_id='2544', season = '2022')
-
-
-# extracts playerID from df (pf)
-#def findPlayerID():
-
-# reads playerinfo dataframe and extracts id as playerID_Spec and full name and player id as pfRead
 
 
 def playerID_Pull():
