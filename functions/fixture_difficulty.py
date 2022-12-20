@@ -46,6 +46,7 @@ from nba_api.stats.library.parameters import SeasonAll
 from nba_api.stats.endpoints import MatchupsRollup
 player_dict = players.get_active_players()
 
+# asking for player name, remove later
 name = "Kawhi Leonard"
 
 def findPlayerFunc(find):
@@ -56,7 +57,7 @@ def findPlayerFunc(find):
 
 
 findPlayerFunc(name)
-
+# creates dataframe for requested player
 pf = pd.DataFrame(findPlayer)
 playerTeamID = "PlaceHolder"
 
@@ -64,7 +65,7 @@ playerTeamID = "PlaceHolder"
 playerCSVDataFrame = pf.to_csv('file_name.csv')
 print(pf)
 
-
+# pulls given player's id from list
 def playerID_Pull():
     global playerID_Spec, pfName_playerID
     dataset = pd.read_csv('file_name.csv')
@@ -126,6 +127,7 @@ fixtureFind_abbv(playerAbbv)
 
 print(game_List)
 
+# decides matchup, LEGACY REMOVE SOON
 def matchupDecide():
     c = 0
     while c < 5:
