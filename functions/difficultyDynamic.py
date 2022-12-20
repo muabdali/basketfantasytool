@@ -17,6 +17,11 @@ teamNamesList = []
 for element in teamname_elements:
     teamName_text = element.get_text()
     teamNamesList.append(teamName_text)
-    print(teamName_text)
+
+
+
+top_teams = teamNamesList[:8]
+middle_teams = teamNamesList[8:16]
+bottom_teams = teamNamesList[16:29]
 
 
