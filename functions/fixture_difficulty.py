@@ -21,14 +21,40 @@ from nba_api.stats.endpoints import PlayerNextNGames
 #import team difficulty
 from teamDiff import *
 
+#from difficultyDynamic import defineTeamCat
+
+
+
 # list of next 5 games
 game_List = []
 
-hard_List = [ 'BOS', 'PHX', 'LAC', 'PHI', 'MKW', 'GSW']
-med_List = ['MIA','TOR','DEN','BKN','MEM', 'DAL','CLE','MIA','ATL', 'MIN']
-easy_List = ['HOU', 'OKC','SAC','NOP', 'CHI', 'LAL', 'POR', 'NYK', 'CHA', 'WAS', 'DET', 'IND', 'ORL', 'UTA', 'SAS']
+
+def defineTeamCat():
+    global top_teams, middle_teams, bottom_teams
+    url = "https://www.cbssports.com/nba/powerrankings/"
+    page = requests.get(url)
+
+    # Parse the HTML of the page
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    # Find all the elements with the class "teamname"
+    teamname_elements = soup.find_all(class_="team-name")
+    teamNamesList = []
 
 
+    # Print the text of each element
+    for element in teamname_elements:
+        teamName_text = element.get_text()
+        teamNamesList.append(teamName_text)
+
+
+
+    top_teams = teamNamesList[:8]
+    middle_teams = teamNamesList[8:16]
+    bottom_teams = teamNamesList[16:29]
+
+
+defineTeamCat()
 
 import pandas as pd
 custom_headers = {
@@ -124,7 +150,6 @@ def fixtureFind_visID():
 playerAbbv = str(getAbbv)
 fixtureFind_abbv(playerAbbv)
 
-
 print(game_List)
 
 # decides matchup, LEGACY REMOVE SOON
@@ -132,13 +157,13 @@ def matchupDecide():
     c = 0
     while c < 5:
         for team in game_List:
-            if team in hard_List:
+            if team in top_teams:
                 print(team + " - Hard Matchup")
                 c = c + 1
-            elif team in med_List:
+            elif team in middle_teams:
                 print(team + " - Medium Matchup")
                 c = c + 1
-            elif team in easy_List:
+            elif team in bottom_teams:
                 print(team + " - Easy Matchup")
                 c = c + 1
 
