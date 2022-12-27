@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 
 def defineTeamCat():
+    global top_teams, middle_teams, bottom_teams
     url = "https://www.cbssports.com/nba/powerrankings/"
     page = requests.get(url)
 
@@ -15,11 +16,15 @@ def defineTeamCat():
     # Find all the elements with the class "teamname"
     teamname_elements = soup.find_all(class_="team-name")
     teamNamesList = []
+    top_teams = []
+    middle_teams = []
+    bottom_teams = []
 
 
     # Print the text of each element
     for element in teamname_elements:
         teamName_text = element.get_text()
+        teamName_text = teamName_text.strip()
         teamNamesList.append(teamName_text)
 
 
@@ -27,7 +32,7 @@ def defineTeamCat():
     top_teams = teamNamesList[:8]
     middle_teams = teamNamesList[8:16]
     bottom_teams = teamNamesList[16:29]
-    return bottom_teams,top_teams,middle_teams
-
+    return top_teams,middle_teams,bottom_teams
 
 defineTeamCat()
+
