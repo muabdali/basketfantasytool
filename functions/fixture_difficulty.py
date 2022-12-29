@@ -23,7 +23,9 @@ from teamDiff import *
 
 from difficultyDynamic import *
 
+abbv_nameMatch:
 
+    "TOR":"TORONTO"
 
 # list of next 5 games
 game_List = []
