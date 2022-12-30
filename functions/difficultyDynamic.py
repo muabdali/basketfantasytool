@@ -3,7 +3,18 @@ from bs4 import BeautifulSoup
 
 # Make a request to the website
 
+abbv_nameMatch = {
+    "Toronto":"TOR",
+    "Miami":"MIA",
+    'Denver':"DEN",
+    "Brooklyn" : "BKN",
+    "Memphis": "MEM",
+    'Dallas':"DAL",
+    "Cleveland":"CLE",
+    "Atlanta":"ATL",
+    "Minnisota":"MIN"
 
+    }
 
 def defineTeamCat():
     global top_teams, middle_teams, bottom_teams
@@ -36,3 +47,8 @@ def defineTeamCat():
 
 defineTeamCat()
 
+
+def turnToAbbv(top, mid, bot):
+    list_of_teams = [top,mid,bot]
+    for team_list in list_of_teams:
+        for element in team_list:
