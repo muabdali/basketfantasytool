@@ -5,40 +5,41 @@ from bs4 import BeautifulSoup
 
 
 abbv_nameMatch = {
-    "Atlanta Hawks": "ATL",
-    "Boston Celtics": "BOS",
-    "Brooklyn Nets": "BKN",
-    "Charlotte Hornets": "CHA",
-    "Chicago Bulls": "CHI",
-    "Cleveland Cavaliers": "CLE",
-    "Dallas Mavericks": "DAL",
-    "Denver Nuggets": "DEN",
-    "Detroit Pistons": "DET",
-    "Golden State Warriors": "GSW",
-    "Houston Rockets": "HOU",
-    "Indiana Pacers": "IND",
-    "Los Angeles Clippers": "LAC",
-    "Los Angeles Lakers": "LAL",
-    "Memphis Grizzlies": "MEM",
-    "Miami Heat": "MIA",
-    "Milwaukee Bucks": "MIL",
-    "Minnesota Timberwolves": "MIN",
-    "New Orleans Pelicans": "NOP",
-    "New York Knicks": "NYK",
-    "Oklahoma City Thunder": "OKC",
-    "Orlando Magic": "ORL",
-    "Philadelphia 76ers": "PHI",
-    "Phoenix Suns": "PHX",
-    "Portland Trail Blazers": "POR",
-    "Sacramento Kings": "SAC",
-    "San Antonio Spurs": "SAS",
-    "Toronto Raptors": "TOR",
-    "Utah Jazz": "UTA",
-    "Washington Wizards": "WAS"
+    "Hawks": "ATL",
+    "Celtics": "BOS",
+    "Nets": "BKN",
+    "Hornets": "CHA",
+    "Bulls": "CHI",
+    "Cavaliers": "CLE",
+    "Mavericks": "DAL",
+    "Nuggets": "DEN",
+    "Pistons": "DET",
+    "Warriors": "GSW",
+    "Rockets": "HOU",
+    "Pacers": "IND",
+    "Clippers": "LAC",
+    "Lakers": "LAL",
+    "Grizzlies": "MEM",
+    "Heat": "MIA",
+    "Bucks": "MIL",
+    "Timberwolves": "MIN",
+    "Pelicans": "NOP",
+    "Knicks": "NYK",
+    "Thunder": "OKC",
+    "Magic": "ORL",
+    "76ers": "PHI",
+    "Suns": "PHX",
+    "Trail Blazers": "POR",
+    "Kings": "SAC",
+    "Spurs": "SAS",
+    "Raptors": "TOR",
+    "Jazz": "UTA",
+    "Wizards": "WAS"
 }
 
+
 def defineTeamCat():
-    global top_teams, middle_teams, bottom_teams
+    global one_teams,two_teams,three_teams
     url = "https://www.cbssports.com/nba/powerrankings/"
     page = requests.get(url)
 
@@ -61,15 +62,28 @@ def defineTeamCat():
 
 
 
-    top_teams = teamNamesList[:8]
-    middle_teams = teamNamesList[8:16]
-    bottom_teams = teamNamesList[16:29]
-    return top_teams,middle_teams,bottom_teams
+    one_teams = teamNamesList[:8]
+    two_teams = teamNamesList[8:16]
+    three_teams = teamNamesList[16:29]
+    return one_teams,two_teams,three_teams
 
 defineTeamCat()
 
 
-def turnToAbbv(top, mid, bot):
-    list_of_teams = [top,mid,bot]
-    for team_list in list_of_teams:
-        for element in team_list:
+"""
+This creates three new lists using list comprehensions, which iterate over the items in one,two and three_teams and look up the corresponding abbreviation
+ in the dictionary using the team name as a key. The resulting lists contain the abbreviations for each team, in the same order as the teams in the original lists.
+"""
+
+def turntoAbbv(top, middle, bottom):
+    global top_teams,middle_teams,bottom_teams
+    all_Lists = [top, middle, bottom]
+    top_teams = [abbv_nameMatch[team] for team in top]
+    middle_teams = [abbv_nameMatch[team] for team in middle]
+    bottom_teams = [abbv_nameMatch[team] for team in bottom]
+
+    return top_teams, middle_teams, bottom_teams
+
+
+turntoAbbv(one_teams,two_teams,three_teams)
+
