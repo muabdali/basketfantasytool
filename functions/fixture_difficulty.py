@@ -1,4 +1,4 @@
-
+# NEEDS TO BE REWRITTEN, ITS A MESS
 # pip install bs4
 from logging import PlaceHolder
 from bs4 import BeautifulSoup
@@ -26,11 +26,11 @@ from difficultyDynamic import *
 
 # list of next 5 games
 game_List = []
-print(top_teams)
+
 
 defineTeamCat()
+turntoAbbv(one_teams,two_teams,three_teams)
 
-print(top_teams)
 
 
 
@@ -128,21 +128,24 @@ def fixtureFind_visID():
 playerAbbv = str(getAbbv)
 fixtureFind_abbv(playerAbbv)
 
-print(game_List)
-
-# decides matchup, LEGACY REMOVE SOON
 def matchupDecide():
     c = 0
-    while c < 5:
-        for team in game_List:
-            if team in top_teams:
-                print(team + " - Hard Matchup")
-                c = c + 1
-            elif team in middle_teams:
-                print(team + " - Medium Matchup")
-                c = c + 1
-            elif team in bottom_teams:
-                print(team + " - Easy Matchup")
-                c = c + 1
-
+    hard_matchupCount = 0
+    med_matchupCount = 0
+    easy_matchupCount = 0
+    for team in game_List:
+        if team in top_teams:
+            print(team + " - Hard Matchup")
+            c = c + 1
+            hard_matchupCount = hard_matchupCount + 1
+        elif team in middle_teams:
+            print(team + " - Medium Matchup")
+            c = c + 1
+            med_matchupCount = med_matchupCount + 1
+        else:
+            print(team + " - Easy Matchup")
+            c = c + 1
+            easy_matchupCount = easy_matchupCount + 1
+            
+            
 matchupDecide()
