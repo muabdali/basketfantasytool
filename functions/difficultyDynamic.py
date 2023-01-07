@@ -87,3 +87,10 @@ def turntoAbbv(top, middle, bottom):
 
 turntoAbbv(one_teams,two_teams,three_teams)
 
+
+def Abbv_teamCat(one_teams,two_teams,three_teams):
+    defineTeamCat()
+    turntoAbbv(one_teams,two_teams,three_teams)
+    
+
+Abbv_teamCat(one_teams,two_teams,three_teams)
