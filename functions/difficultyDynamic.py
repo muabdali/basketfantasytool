@@ -86,4 +86,3 @@ def turntoAbbv(top, middle, bottom):
 
 
 turntoAbbv(one_teams,two_teams,three_teams)
-

@@ -130,19 +130,14 @@ fixtureFind_abbv(playerAbbv)
 
 print(game_List)
 
-# decides matchup, LEGACY REMOVE SOON
-def matchupDecide():
-    c = 0
-    while c < 5:
-        for team in game_List:
-            if team in top_teams:
-                print(team + " - Hard Matchup")
-                c = c + 1
-            elif team in middle_teams:
-                print(team + " - Medium Matchup")
-                c = c + 1
-            elif team in bottom_teams:
-                print(team + " - Easy Matchup")
-                c = c + 1
+def matchup1Decide():
+    for team in game_List:
+        if team in top_teams:
+            print(team + " - Hard Matchup")
+        elif team in middle_teams:
+            print(team + " - Medium Matchup")
+        elif team in bottom_teams:
+            print(team + " - Easy Matchup")
 
-matchupDecide()
+
+matchup1Decide()
