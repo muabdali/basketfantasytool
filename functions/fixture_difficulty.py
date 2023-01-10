@@ -128,21 +128,6 @@ def fixtureFind_visID():
 playerAbbv = str(getAbbv)
 fixtureFind_abbv(playerAbbv)
 
-<<<<<<< HEAD
-print(game_List)
-
-def matchup1Decide():
-    for team in game_List:
-        if team in top_teams:
-            print(team + " - Hard Matchup")
-        elif team in middle_teams:
-            print(team + " - Medium Matchup")
-        elif team in bottom_teams:
-            print(team + " - Easy Matchup")
-
-
-matchup1Decide()
-=======
 def matchupDecide():
     c = 0
     hard_matchupCount = 0
@@ -164,4 +149,3 @@ def matchupDecide():
             
             
 matchupDecide()
->>>>>>> 8a39bdd6e063e8bd531bbd576546d69f2711c02d
