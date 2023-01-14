@@ -136,15 +136,12 @@ def matchupDecide():
     for team in game_List:
         if team in top_teams:
             print(team + " - Hard Matchup")
-            c = c + 1
             hard_matchupCount = hard_matchupCount + 1
         elif team in middle_teams:
             print(team + " - Medium Matchup")
-            c = c + 1
             med_matchupCount = med_matchupCount + 1
         else:
             print(team + " - Easy Matchup")
-            c = c + 1
             easy_matchupCount = easy_matchupCount + 1
             
             
