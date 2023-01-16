@@ -11,7 +11,7 @@ from nba_api.stats.static import teams
 from nba_api.stats.endpoints import PlayerNextNGames
 
 
-class NBA_Player():
+class NBA_PlayerFixtures():
     def __init__(self, name):
         self.name = name
         self.player_dict = players.get_active_players()
@@ -23,15 +23,17 @@ class NBA_Player():
         self.teamABBV = commonplayerinfo.CommonPlayerInfo(player_id=self.players_ID)
         self.abbvDF = self.teamABBV.get_data_frames()[0]
         self.getAbbv = self.abbvDF.iat[0, 20]
-        self.nextgame = PlayerNextNGames(number_of_games=5, player_id=self.players_ID)
-        self.df = self.nextgame.get_data_frames()[0]
+        self.nextFiveGames = PlayerNextNGames(number_of_games=5, player_id=self.players_ID)
+        self.df = self.nextFiveGames.get_data_frames()[0]
         self.game_List = []
+        self.nextNumberGames = PlayerNextNGames(number_of_games=, player_id=self.players_ID)
 
     def playerID_pull(self):
         dataset = pd.read_csv('file_name.csv')
         cols = [1,2]
         pfName_playerID = dataset[dataset.columns[cols]]
         playerID_Spec = self.pf.iat[0,0]
+        print(playerID_Spec)
         return playerID_Spec
 
     def fixture_find_abbv(self, playersTeam_Abbv):
@@ -40,7 +42,8 @@ class NBA_Player():
             if nextFixture == playersTeam_Abbv:
                 nextFixture = self.df.iat[i,6]
             self.game_List.append(nextFixture)
-
 # usage 
-Kawhi_Leonard = NBA_Player("Kawhi Leonard")
+Kawhi_Leonard = NBA_PlayerFixtures("Kawhi Leonard")
 Kawhi_Leonard.fixture_find_abbv(Kawhi_Leonard.getAbbv)
+
+
