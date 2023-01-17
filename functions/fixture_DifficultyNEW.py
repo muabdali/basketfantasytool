@@ -12,7 +12,7 @@ from nba_api.stats.endpoints import PlayerNextNGames
 
 
 class NBA_PlayerFixtures():
-    def __init__(self, name, numberofGames=None):
+    def __init__(self, name):
         self.name = name
         self.player_dict = players.get_active_players()
         self.findPlayer = players.find_players_by_full_name(self.name)
@@ -24,9 +24,9 @@ class NBA_PlayerFixtures():
         self.abbvDF = self.teamABBV.get_data_frames()[0]
         self.getAbbv = self.abbvDF.iat[0, 20]
         self.nextFiveGames = PlayerNextNGames(number_of_games=5, player_id=self.players_ID)
-        self.NextNumberGames = PlayerNextNGames(number_of_games=numberofGames, player_id=self.players_ID)
         self.df = self.nextFiveGames.get_data_frames()[0]
         self.game_List = []
+        return self.players_ID
 
     def playerID_pull(self):
         dataset = pd.read_csv('file_name.csv')
@@ -42,9 +42,12 @@ class NBA_PlayerFixtures():
             if nextFixture == playersTeam_Abbv:
                 nextFixture = self.df.iat[i,6]
             self.game_List.append(nextFixture)
+    def nextNumberGames(N_Games):
+        PlayerNextNGames(number_of_games=N_Games, players_ID)
+        
 # usage 
 Kawhi_Leonard = NBA_PlayerFixtures("Kawhi Leonard")
 Kawhi_Leonard.fixture_find_abbv(Kawhi_Leonard.getAbbv)
-Kawhi_Leonard.NextNumberGames(5)
+
 
 
