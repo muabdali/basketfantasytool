@@ -6,15 +6,33 @@ import choice
 from nba_api import *
 
 
-class NBA_PlayerStats():
-    def __init__(self, name):
-        self.name = name
-        self.playerDF = pd.read_csv('https://www.basketball-reference.com/short/inc/sup_players_search_list.csv', header=None)
-        self.playerDF = self.playerDF.rename(columns={0: 'id',
+
+def player_DFform(playerNameInput):
+    player_df = pd.read_csv(
+        'https://www.basketball-reference.com/short/inc/sup_players_search_list.csv', 
+        header=None)
+    player_df = player_df.rename(columns={0: 'id',
                                       1: 'playerName',
                                       2: 'years'})
-        self.playersList = list(self.playerDF['playerName'])
-        return self.playersList
+    playersList = list(player_df['playerName'])
+    playerMatch = pd.DataFrame(process.extract(f'{playerNameInput}', playersList, limit=1))
+    search_match = playerMatch.rename(columns={0: 'playerName', 1: 'matchScore'})
+    givenPlayerMatch = playerMatch.iloc[0][0]
+    matches = pd.merge(search_match, player_df, how='inner',
+                   on='playerName').drop_duplicates().reset_index(drop=True)
+    choices = [': '.join(x) for x in list(
+        zip(matches['playerName'], matches['years']))]
+    print(choices)
 
-NBA_PlayerStats("Kawhi Leonard")
+# NEXT STEP, FOLLOW LINE 50 in ORIGINAL statGrab.py
+
+
+
+player_DFform('Kawhi Leonard')
+
+
+
+
+
+        
 
