@@ -8,6 +8,7 @@ from nba_api import *
 
 
 def player_DFform(playerNameInput):
+    global playerName, years
     player_df = pd.read_csv(
         'https://www.basketball-reference.com/short/inc/sup_players_search_list.csv', 
         header=None)
@@ -22,17 +23,32 @@ def player_DFform(playerNameInput):
                    on='playerName').drop_duplicates().reset_index(drop=True)
     choices = [': '.join(x) for x in list(
         zip(matches['playerName'], matches['years']))]
-    print(choices)
-
-# NEXT STEP, FOLLOW LINE 50 in ORIGINAL statGrab.py
+    playerName, years = choices[0].split(':')
 
 
 
-player_DFform('Kawhi Leonard')
+class player_DFForm():
+    def __init__(self, name):
+            global playerName, years
+            self.player_df = pd.read_csv(
+                'https://www.basketball-reference.com/short/inc/sup_players_search_list.csv', 
+                header=None)
+            self.player_df = self.player_df.rename(columns={0: 'id',
+                                            1: 'playerName',
+                                            2: 'years'})
+            self.playersList = list(self.player_df['playerName'])
+            self.playerMatch = pd.DataFrame(process.extract(f'{name}', self.playersList, limit=1))
+            search_match = self.playerMatch.rename(columns={0: 'playerName', 1: 'matchScore'})
+            self.givenPlayerMatch = self.playerMatch.iloc[0][0]
+            self.matches = pd.merge(search_match, self.player_df, how='inner',
+                        on='playerName').drop_duplicates().reset_index(drop=True)
+            self.choices = [': '.join(x) for x in list(
+                zip(self.matches['playerName'], self.matches['years']))]
+            self.playerName, self.years = self.choices[0].split(':')
 
 
 
+Test = player_DFForm("Kawhi Leonard")
+thePlayersName = Test.years
 
-
-        
-
+print(thePlayersName)
