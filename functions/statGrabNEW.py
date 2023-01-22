@@ -6,6 +6,9 @@ import choice
 from nba_api import *
 
 
+"""
+REPLACED WITH player_DFFORM class
+
 
 def player_DFform(playerNameInput):
     global playerName, years
@@ -25,7 +28,9 @@ def player_DFform(playerNameInput):
         zip(matches['playerName'], matches['years']))]
     playerName, years = choices[0].split(':')
 
+"""
 
+# Establishes basic variables for script. Look at full documentation for use case
 
 class player_DFForm():
     def __init__(self, name):
