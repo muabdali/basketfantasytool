@@ -38,6 +38,13 @@ def importSettings(givenLeagueID):
         statsDict[statsID].append(pointValue)
 
 
+class importSettings():
+    def __init__(self, name):
+        global statsDict
+        p = requests.get(url, headers = {"User-Agent": "Mozilla/5.0"})
+
+
+
 '''
 STAT ID LEGEND
 
