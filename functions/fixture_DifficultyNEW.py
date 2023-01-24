@@ -43,7 +43,7 @@ class NBA_PlayerFixtures():
                 nextFixture = self.df.iat[i,6]
             self.game_List.append(nextFixture)
     def nextNumberGames(N_Games):
-        PlayerNextNGames(number_of_games=N_Games, players_ID)
+        PlayerNextNGames(number_of_games=N_Games, self.players_ID)
         
 # usage 
 Kawhi_Leonard = NBA_PlayerFixtures("Kawhi Leonard")
