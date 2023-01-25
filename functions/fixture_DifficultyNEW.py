@@ -12,6 +12,7 @@ from nba_api.stats.endpoints import PlayerNextNGames
 
 
 class NBA_PlayerFixtures():
+    global players_ID
     def __init__(self, name):
         self.name = name
         self.player_dict = players.get_active_players()
@@ -26,7 +27,7 @@ class NBA_PlayerFixtures():
         self.nextFiveGames = PlayerNextNGames(number_of_games=5, player_id=self.players_ID)
         self.df = self.nextFiveGames.get_data_frames()[0]
         self.game_List = []
-        return self.players_ID
+        players_ID = self.players_ID
 
     def playerID_pull(self):
         dataset = pd.read_csv('file_name.csv')
@@ -43,7 +44,7 @@ class NBA_PlayerFixtures():
                 nextFixture = self.df.iat[i,6]
             self.game_List.append(nextFixture)
     def nextNumberGames(N_Games):
-        PlayerNextNGames(number_of_games=N_Games, self.players_ID)
+        PlayerNextNGames(number_of_games=N_Games, player_id=players_ID)
         
 # usage 
 Kawhi_Leonard = NBA_PlayerFixtures("Kawhi Leonard")
