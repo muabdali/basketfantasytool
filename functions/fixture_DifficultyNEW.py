@@ -49,9 +49,16 @@ class NBA_PlayerFixtures():
         givenPIDforClass = selfNamedforPID.players_ID
         nextNumberGamesPlain = PlayerNextNGames(number_of_games=N_Games, player_id=givenPIDforClass)
         nextNumberGamesDF = nextNumberGamesPlain.get_data_frames()[0]
+        pes = NBA_PlayerFixtures.fixture_find_abbv(self, NBA_PlayerFixtures.teamabbv)
         return nextNumberGamesDF
 
-        
+"""
+line 52 needs arguments 2nd needs to be a variable
+that reps the given player's team's abbv. (line 24)
+
+then you need to call the fixture find abbv function and let it parse through the "nextNubmerGamesDF". 
 
 
+"""
 
+#nextNumberGames(10)
