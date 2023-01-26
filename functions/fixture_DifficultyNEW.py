@@ -45,11 +45,12 @@ class NBA_PlayerFixtures():
             self.game_List.append(nextFixture)
 
     def nextNumberGames(N_Games):
-        p = NBA_PlayerFixtures("Kawhi Leonard")
-        pes = p.players_ID
-        nextNumberGamesPlain = PlayerNextNGames(number_of_games=N_Games, player_id=pes)
+        selfNamedforPID = NBA_PlayerFixtures("Kawhi Leonard")
+        givenPIDforClass = selfNamedforPID.players_ID
+        nextNumberGamesPlain = PlayerNextNGames(number_of_games=N_Games, player_id=givenPIDforClass)
         nextNumberGamesDF = nextNumberGamesPlain.get_data_frames()[0]
-        print(nextNumberGamesDF)
+        return nextNumberGamesDF
+
         
 
 
