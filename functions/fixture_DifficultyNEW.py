@@ -50,8 +50,9 @@ class NBA_PlayerFixtures():
         nextNumberGamesPlain = PlayerNextNGames(number_of_games=N_Games, player_id=givenPIDforClass)
         nextNumberGamesDF = nextNumberGamesPlain.get_data_frames()[0]
         playerTeamAbbrev = commonplayerinfo.CommonPlayerInfo(player_id=playerID_Spec)
-        pes = NBA_PlayerFixtures.fixture_find_abbv(self, playersTeam_Abbv = playerTeamAbbrev)
-        print(pes)
+        print(playerTeamAbbrev)
+        #pes = NBA_PlayerFixtures.fixture_find_abbv(None, playersTeam_Abbv = playerTeamAbbrev)
+        #print(pes)
         return nextNumberGamesDF
 
 """
