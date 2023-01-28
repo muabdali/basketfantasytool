@@ -49,7 +49,9 @@ class NBA_PlayerFixtures():
         givenPIDforClass = selfNamedforPID.players_ID
         nextNumberGamesPlain = PlayerNextNGames(number_of_games=N_Games, player_id=givenPIDforClass)
         nextNumberGamesDF = nextNumberGamesPlain.get_data_frames()[0]
-        pes = NBA_PlayerFixtures.fixture_find_abbv(self, NBA_PlayerFixtures.teamabbv)
+        playerTeamAbbrev = commonplayerinfo.CommonPlayerInfo(player_id=playerID_Spec)
+        pes = NBA_PlayerFixtures.fixture_find_abbv(self, playersTeam_Abbv = playerTeamAbbrev)
+        print(pes)
         return nextNumberGamesDF
 
 """
@@ -61,4 +63,4 @@ then you need to call the fixture find abbv function and let it parse through th
 
 """
 
-#nextNumberGames(10)
+nextNumberGames(10)
